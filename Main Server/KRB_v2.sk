@@ -29,7 +29,7 @@ options:
 	# token = 카린봇 토큰
 	# name = 카린봇 이름
 	
-	token: Njg1NzE1Mzg2NzQ1ODgwNTgx.Xrfsgg.z-nRP6smTtPSdml6PVCylPCwMJY
+	token: 'Your Token'
 	name: KaRin Bot v2
 
 On script load:
