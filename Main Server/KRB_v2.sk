@@ -4,7 +4,7 @@
 # 본 문서는 CC BY-NC-SA 2.0 KR에 따라 이용이 가능합니다.
 # https://creativecommons.org/licenses/by-nc-sa/2.0/kr/
 
-# version = [ 1.0.0d release ]
+# version = [ 1.1.1 release ]
 
 options:
 	# 카린봇 Original Setting
@@ -30,7 +30,7 @@ options:
 	# token = 카린봇 토큰
 	# name = 카린봇 이름
 	
-	token: your token
+	token: Njg1NzE1Mzg2NzQ1ODgwNTgx.XtXxQA.CCapnJOI80brzyf-BEi7i8_8DEE
 	name: KaRin Bot v2
 
 On script load:
@@ -39,6 +39,7 @@ On script load:
 	send "{@c} &b카린봇 &e로드 &a성공&f!" to console
 	set {krbpremium::624274923455512577} to true
 	set {krbpremium::451335803038203904} to true
+	set {automark1} to 1
 	delete {naruto}
 	delete {token}
 	
@@ -50,7 +51,7 @@ On skript load:
 	set {_uptime::m} to 0
 	set {_uptime::t} to 0
 	set {_uptime::d} to 0
-	set {automark} to 0
+	set {automark1} to 0
 	set {개발자게임} to "개발"
 	create embed:
 		set title of the embed to "ON"
@@ -84,16 +85,22 @@ every 20 ticks:
 
 every 10 seconds:
 	if {jumgum} is not true:
-		add 1 to {automark}
-		if {automark} is 1:
+		if {automark1} is 1:
 			mark "{@name}" as playing "HomePage | http://karinbot.new.so"
-		if {automark} is 2:
+			set {automark1} to 2
+			stop
+		if {automark1} is 2:
 			mark "{@name}" as listening "[ 카린아 도와줘 ]"
-		if {automark} is 3:
+			set {automark1} to 3
+			stop
+		if {automark1} is 3:
 			mark "{@name}" as playing "Version | %{version}%"
+			set {automark1} to 4
+			stop
 		if {automakr} is 4:
 			mark "{@name}" as playing "개발자는 %{개발자게임}%"
-			set {automark} to 0
+			set {automark1} to 1
+			stop
 	else:
 		mark "{@name}" as playing "현재 카린봇이 점검중입니다!"
 
@@ -167,6 +174,8 @@ discord command 거절:
 				
 discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
 		if arg 1 is "나는":
 			if arg 2 is "누구일까?":
 				if {krbad::%discord id of event-user%} is set:
@@ -185,14 +194,12 @@ discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 					create embed:
 						set title of the embed to "카린봇 관리자 명령어"
 						set the colour of the embed to YELLOW
-						add split field named "카린이여 지정상태를" with value "[홈페이지로/도움말로/자동으로] 설정하거라" to embed
 						add split field named "카린이여 공지하거라" with value "[일반/중요] [내용]" to embed
 						add split field named "카린이여 경고를" with value "[추가/차감]하거라 [유저태그] [사유] (개발중)" to embed
 						add split field named "카린이여 강제등록시켜라" with value "[서버ID] [전달채널ID]" to embed
 						add split field named "카린이여 강제등록을취소시켜라" with value "[서버ID] [전달채널ID]" to embed
 						add split field named "카린이여 관리자를" with value "설정하거라 [유저ID]" to embed
 						add split field named "카린이여 검열모드를" with value "설정하거라 [서버ID]" to embed
-						add split field named "카린이여 버전을" with value "설정하거라 [내용]" to embed
 						add split field named "카린이여 [가입/탈퇴]시켜라" with value "[유저ID]" to embed
 						add split field named "카린이여 TODO" with value "(승인/거절 TODO제목)" to embed
 						add split field named "카린이여 이용제한을" with value "설정하거라 [해제: 유저아이디]" to embed
@@ -211,7 +218,8 @@ discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 							add split field named "카린이여 파트너서버를" with value "설정하거라 [서버ID]" to embed
 							add split field named "카린이여 임시서버를" with value "[시작/종료]하거라" to embed
 							add split field named "카린이여 온오프알림을" with value "설정하거라 [서버ID]" to embed
-							add split field named "카린이여 시즌을" with value "설정하거라" to embed
+							add split field named "카린이여 시즌을" with value "설정하거라 [내용]" to embed
+							add split field named "카린이여 버전을" with value "설정하거라 [내용]" to embed
 							add split field named "카린이여 cmd" with value "[내용]" to embed
 							add split field named "카린이여 [개발모드/점검모드/임시서버]를" with value "(비)활성화하거라" to embed
 							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
@@ -219,6 +227,28 @@ discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 							stop
 					else:
 						add reaction "<a:no:707786855143309370>" to event-message with "{@name}"
+						stop
+			if arg 1 is "이모지를":
+				if arg 2 is "달아라" or "달거라":
+					if arg 3 is set:
+						if arg 4 is set:
+							set {emoji} to arg 3
+							if arg 3 is "yes":
+								set {emoji} to "<a:yes:707786803414958100>"
+							if arg 3 is "no":
+								set {emoji} to "<a:no:707786855143309370>"
+							add reaction "%{emoji}%" to arg 4 with "{@name}"
+							stop
+						else:
+							set {emoji} to arg 3
+							if arg 3 is "yes":
+								set {emoji} to "<a:yes:707786803414958100>"
+							if arg 3 is "no":
+								set {emoji} to "<a:no:707786855143309370>"
+							add reaction "%{emoji}%" to event-message with "{@name}"
+							stop
+					else:
+						reply with "{@b} No Emoji Found"
 						stop
 			if arg 1 is "개발자게임을":
 				if arg 2 is "설정하거라":
@@ -595,81 +625,60 @@ discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 							delete {_server2::*}
 							delete {_server3::*}
 							stop
-			if arg 1 is "지정상태를":
-				if arg 2 is "홈페이지로" or "도움말로":
-					if arg 3 is "설정하거라":
-						reply with "{@b} %arg 2% 상태 자동 설정이 완료되었습니다."
-						if arg 2 is "홈페이지로":
-							mark event-bot as playing "[ http://karinbot.new.so ]"
-							reply with "{@b} 현재 상태: ``[ http://karinbot.new.so ]`` Playing"
-							stop
-						if arg 2 is "도움말로":
-							mark event-bot as playing "[ 카린아 도와줘 ] 를 입력하고 도움말을 받으세요!"
-							reply with "{@b} 현재 상태: ``[ 카린아 도와줘 ] 를 입력하고 도움말을 받으세요!`` Playing"
-							stop
-				if arg 2 is "자동으로":
-					if arg 3 is "설정하거라":
-						reply with "{@b} 현재 상태: ``자동상태가 설정되었습니다.`` Playing"
-						if {count::mark} is not set:
-							set {count::mark} to 1
-							exit
-						loop {count::*}:
-							set {count::mark} to 1
-							mark event-bot as playing "[ http://karinbot.new.so ]"
-							wait 5 seconds
-							mark event-bot as playing "[ 카린아 도와줘 ] 를 입력하고 도움말을 받으세요!"
-							wait 5 seconds
-					if arg 3 is "설정취소하거라":
-						delete {count.mark}
-						reply with "{@b} 현재 상태: ``.`` Playing"
-						mark event-bot as playing "."
 			if arg 1 is "리로드하거라":
 				if {어드민::%discord id of event-user%} is true:
 					if arg 2 is "KRBEngine" or "전체":
-						reply with "{@b} 카린봇 전체 서버의 리로드를 시작합니다!" and store it in {reeload}
+						reply with "{@b} 카린봇 전체 서버의 리로드를 시작합니다!" and store it in {reload}
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 전체 서버를 리로드 중입니다."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 전체 서버를 리로드 중입니다.."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 전체 서버를 리로드 중입니다..."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 전체 서버의 리로드가 완료되었습니다!"
+						edit {reload} to show "{@b} 카린봇 전체 서버를 리로드 중입니다."
+						execute console command "sk reload %script%"
+						edit {reload} to show "{@b} 카린봇 전체 서버의 리로드가 완료되었습니다!"
 						exit
 					if arg 2 is "KRBAdminEngine" or "어드민":
-						reply with "{@b} 카린봇 어드민 서버의 리로드를 시작합니다!" and store it in {reeload}
+						reply with "{@b} 카린봇 어드민 서버의 리로드를 시작합니다!" and store it in {reload}
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다."
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다.."
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다.."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다..."
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다..."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 어드민 서버의 리로드가 완료되었습니다!"
+						edit {reload} to show "{@b} 카린봇 어드민 서버의 리로드가 완료되었습니다!"
 						exit
 					if arg 2 is "KRBPlayerEngine" or "인증" or "가입":
-						reply with "{@b} 카린봇 인증 & 가입 서버의 리로드를 시작합니다!" and store it in {reeload}
+						reply with "{@b} 카린봇 인증 & 가입 서버의 리로드를 시작합니다!" and store it in {reload}
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다."
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다.."
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다.."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다..."
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다..."
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 인증 & 가입 서버의 리로드가 완료되었습니다!"
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버의 리로드가 완료되었습니다!"
 						exit
 					if arg 2 is "KRBsdEngine" or "습득":
-						reply with "{@b} 카린봇 습득 서버의 리로드를 시작합니다!" and store it in {reeload}
+						reply with "{@b} 카린봇 습득 서버의 리로드를 시작합니다!" and store it in {reload}
 						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 습득 서버를 리로드 중입니다."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 습득 서버를 리로드 중입니다.."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 습득 서버를 리로드 중입니다..."
-						wait 1 second
-						edit {reeload} to show "{@b} 카린봇 습득 서버의 리로드가 완료되었습니다!"
+						loop {learn::*}:
+							set {_amount2::*} to loop-value split by "~!~"
+							edit {reload} to show "{@b} {learn::%{_amount2::1}%} 변수를 리로드중입니다..."
+							wait 2 ticks
+							loop {learner::*}:
+								set {_amount2::*} to loop-value-1 split by "~!~"
+								edit {reload} to show "{@b} {learner::%{_amount2::1}%} 변수를 리로드중입니다..."
+								wait 2 ticks
+							loop {learner2::*}:
+								set {_amount2::*} to loop-value-1 split by "~!~"
+								edit {reload} to show "{@b} {learner2::%{_amount2::1}%} 변수를 리로드중입니다..."
+								wait 2 ticks
+						edit {reload} to show "{@b} 카린봇 습득 서버의 리로드가 완료되었습니다!"
 						exit
-					delete {reeload}
+					else:
+						reply with "{@b} %arg 2% 모듈의 리로드를 시작합니다!" and store it in {reload}
+						execute console command "sk reload %arg 2%"
+						edit {reload} to show "{@b} 리로드가 완료되었습니다!"
+						exit
+					delete {reload}
 				else:
 					reply with "{@b} 당신은 권한이 없습니다!"
 			if arg 1 is "종료하거라":
@@ -717,6 +726,22 @@ discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
 							set the description of embed to "%mention tag of event-user% -> <@!%arg 4%> %nl%%nl%사유: %arg 4%%nl%현재 경고: %{krbwarn::%arg 3%}%"
 							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
 							reply with last created embed
+			if arg 1 is "변수정보확인":
+				if arg 2 is "learn" or "krbwarn" or "cid" or "어드민":
+					if arg 3 is set:
+						if arg 2 is "learn":
+							reply with "%{learn::%arg 3%}%"
+						if arg 2 is "krbwarn":
+							reply with "%{krbwarn::%arg 3%}%"
+						if arg 2 is "cid":
+							reply with "%{cid::%arg 3%}%"
+						if arg 2 is "어드민":
+							reply with "%{어드민::%arg 3%}%"
+					else:
+						reply with "%{%arg 2%}%"
+				else:
+					reply with "아직 해당 변수는 지원되지 않거나, 변수가 존재하지 않습니다."
+				stop
 			if arg 1 is "공지하거라":
 				if arg 3 is set:
 					if arg 2 is not "일반" or "중요":
@@ -862,6 +887,8 @@ discord command _dm [<integer>] [<text>]:
 
 discord command 카린아 [<text>] [<text>] [<text>]:
 	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
 		if {jumgum} is true:
 			if {krbad::%discord id of event-user%} is not "624274923455512577":
 				stop
@@ -897,6 +924,12 @@ discord command 카린아 [<text>] [<text>] [<text>]:
 								reply with "이미 등록된 칸입니다. 따라하기가 취소됩니다."
 								stop
 							else:
+								if arg 2 contain "@everyone" or "@here":
+									reply with "everyone, here는 사용하실 수 없습니다."
+									stop
+								if arg 3 contain "@everyone" or "@here":
+									reply with "everyone, here는 사용하실 수 없습니다."
+									stop
 								delete event-message with event-bot
 								if arg 3 is set:
 									reply with "%arg-2% %arg-3%" and store it in {reeplysys::%discord id of event-user%::%{count::%discord id of event-user%}%}
@@ -1151,6 +1184,8 @@ discord command _logout:
 			
 discord command 카린앙 [<text>] [<text>] [<text>] [<text>] [<text>]:
 	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
 		if {jumgum} is true:
 			if {krbad::%discord id of event-user%} is not "624274923455512577":
 				create embed:
@@ -1197,6 +1232,8 @@ discord command 카린앙 [<text>] [<text>] [<text>] [<text>] [<text>]:
 
 discord command 카주식 [<text>] [<text>] [<integer>]:
 	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
 		if arg 1 is "지갑":
 			reply with "흐아니 그래픽카드: `%{주식::흐::%discord id of event-user%}%`주%nl%스플 전자: `%{주식::스::%discord id of event-user%}%`주"
 			set {흐} to 100
@@ -1264,6 +1301,10 @@ on reaction added:
 		remove event-emote added by event-user from event-message
 
 On guild message received seen by "{@name}":
+	if "%discord id of event-channel%" is "718293765332402268":
+		stop
+	if "%discord id of event-channel%" is "717718644569669782" or "701271541173846137":
+		add reaction "<a:yes:707786803414958100>" to event-message with "{@name}"
 	if {logsugipserver::%discord id of event-guild%} is true:
 		send "[채팅데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to channel with id "%{logchannel::%discord id of event-guild%}%" with "{@name}"
 		if {logsugip::%discord id of event-guild%} is true:
@@ -1353,6 +1394,29 @@ On guild message received seen by "{@name}":
 		set {_} to event-string
 		set {_amount::*} to {_} split by " "
 		if {_amount::1} is "카린이여":
+			if {_amount::2} is "공지채널들을":
+				if {_amount::3} is "삭제하거라":
+					create embed:
+						set the description of embed to "삭제를 시작합니다!"
+					reply with last created embed with store it in {allciddelete}
+					loop {cid::*}:
+						create embed:
+							set the description of embed to "%loop-value% 채널을 삭제하고 있습니다."
+						edit {allciddelete} to show last created embed
+					create embed:
+						set the description of embed to "삭제를 완료했습니다."
+					reply with last created embed with store it in {allciddelete}
+					create embed:
+						set title of the embed to "카린봇 ㅡ 중요공지"
+						set the colour of the embed to ORANGE
+						set the description of embed to "카린봇의 공지채널 데이터가 삭제되었습니다.%nl%%nl%``카린아 공지채널설정 (현재 공지가 보내진 채널ID)``으(로) 채널을 재설정 해주세요!%nl%%nl%:link: [카린봇 추천하러 가기](https://koreanbots.dev/bots/%discord id of event-bot%)%nl%:link: [카린봇 지원 디스코드 입장하기](https://discord.gg/sZ7E5Kt)%nl%:link: [카린봇 홈페이지 바로가기](http://karinbot.new.so)%nl%:link: [팀 리에토 디스코드 입장하기](https://discord.gg/55n4jnm)%nl%:link: [카린봇 이용약관 확인하기](http://gg.gg/KRBiinf2)%nl%%nl%항상 이용해주셔서 감사합니다."
+						set the footer of embed to footer with text "사용자: Console - 자동 전송됨 | %now%"
+					loop {cid::*}:
+						set {announce} to loop-value
+						send last created embed to channel with id "%{announce}%" with "{@name}"
+					delete {cid::*}
+					delete {announce}
+					stop
 			if {_amount::2} is "대화추가":
 				if {krbad::%discord id of event-user%} is "%discord id of event-user%":
 					if {_amount::3} is "돈" or "정보" or "내정보" or "호감도" or "서버등록해제" or "시간" or "서버등록" or "ㄷㅇㅈ" or "도와줘" or "도움말" or "문의" or "따라해" or "습득" or "ㅅㄷ" or "나루토" or "ㄴㄾ" or "ㄴㄹㅌ" or "ㄷㅇㅁ" or "뮤직" or "초대코드" or "초대링크" or "잊어" or "습득제거" or "ㅅㄷㅈㄱ" or "습득모두제거" or "ㅅㄷㅁㄷㅈㄱ" or "습득확인" or "ㅅㄷㅎㅇ" or "카린유튜브" or "명언" or "임베드따라해" or "업로드" or "후원" or "유저정보" or "가입" or "도와주거라" or "탈퇴시켜라" or "가입시켜라" or "지정상태를" or "리로드하거라" or "종료하거라" or "시작하거라" or "보아라" or "들어라" or "하거라" or "경고를" or "공지하거라":
@@ -1691,15 +1755,15 @@ On guild message received seen by "{@name}":
 							delete {cid2::%discord id of event-guild%}
 							reply with "<a:yes:707786803414958100> ``%event-guild%``의 카린봇 관리자 명령어 로그 채널이 삭제되었습니다."
 							stop
-						set {cid2::%discord id of event-guild%} to {_amount::3} parsed as int
+						set {cid2::%discord id of event-guild%} to {_amount::3}
 						reply with "<a:yes:707786803414958100> ``%{_amount::3}%`` 채널이 ``%event-guild%``의 카린봇 관리자 명령어 로그 채널로 등록되었습니다."
 				else if {_amount::2} is "공지채널설정":
 					if {_amount::3} is set:
 						if {_amount::3} is "0":
-							set {cid::%discord id of event-guild%} to {_amount::3} parsed as int
+							delete {cid::%discord id of event-guild%}
 							reply with "<a:yes:707786803414958100> ``%event-guild%``의 카린봇 공지사항 채널이 삭제되었습니다."
 							stop
-						set {cid::%discord id of event-guild%} to {_amount::3} parsed as int
+						set {cid::%discord id of event-guild%} to {_amount::3}
 						reply with "<a:yes:707786803414958100> ``%{_amount::3}%`` 채널이 ``%event-guild%``의 카린봇 공지사항 채널로 등록되었습니다."
 				else if {_amount::2} is "돈":
 					if {_amount::3} is "받기":
@@ -2176,7 +2240,7 @@ On guild message received seen by "{@name}":
 							if {krbpremium::%discord id of event-user%} is true:
 								reply with "```프리미엄: ~```"
 							stop
-						else if {_amount::2} is not "깃헙" or "문의" or "따라해" or "뮤직" or "초대코드" or "초대링크" or "임베드따라해" or "업로드" or "후원" or "가입":
+						else if {_amount::2} is not "깃헙" or "코로나" or "문의" or "따라해" or "뮤직" or "초대코드" or "초대링크" or "임베드따라해" or "업로드" or "후원" or "가입" or "학교":
 							loop {daehwa::*}:
 								set {_amount2::*} to loop-value split by "~!~"
 								if {_amount2::2} contain "(줄바꿈)":
