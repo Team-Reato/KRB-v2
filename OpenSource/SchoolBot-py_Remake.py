@@ -4,8 +4,8 @@ import discord.ext
 from discord.ext import commands
 import datetime
 
-token="Njg1NzE1Mzg2NzQ1ODgwNTgx.XtXxQA.CCapnJOI80brzyf-BEi7i8_8DEE"
-neistoken="2f847a87e1e6496ba600bf3811316737"
+token=""
+neistoken=""
 bot = commands.Bot(command_prefix="]")
 n = datetime.datetime.now()
 NOW = f'{n.year}{n.month}{n.day}'
