@@ -1,0 +1,6 @@
+On guild message received seen by "{@name}":
+	if event-string contain "^^ㅣ" or "샹" or "썅" or "ㅄ" or "ㅂㅅ" or "병신" or "씨발" or "애미" or "간나" or "좆" or "보지" or "자지" or "섹스" or "ㅆㅂ" or "ㅅㅂ" or "ㅄ" or "시발" or "새끼" or "느금마" or "ㄴㄱㅁ" or "야동" or "떽뜨" or "^^ㅣ발" or "ㅆㅂ" or "온더비치" or "온더 비치" or "nigger" or "bitch" or "sex" or "엄준식" or "ㄴㅇㅁ" or "ㅇㅁ" or "발레" or "자위" or "신음" or "지랄" or "ㅈㄹ" or "ㅇㅎㅎ" or "에헤헤" or "tq" or "tlqkf" or "ㅅㅂ" or "시발" or "씨발" or "Tlqkf" or "ㅅㅅ" or "섹스" or "꼰대" or "꼬라지" or "개떡같은" or "개같은" or "지랄" or "새끼" or "시발" or "퍽큐" or "인간말종" or "인간쓰레기" or "똥꼬" or "똥방구" or "또라이" or "자위행위" or "성행위" or "ㅗ":
+		if {검열::%discord id of event-guild%} is true:
+			delete event-message with event-bot
+			reply with "%mention tag of event-user%, 어허! 그런말 하면 안댕"
+			stop

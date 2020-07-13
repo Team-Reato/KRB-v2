@@ -1,0 +1,37 @@
+On guild message received seen by "{@name}":
+	if event-string is "확인" or "취소":
+		if {공지} is set:
+			if event-string is "확인":
+				if {공지확인} is "일반":
+					create embed:
+						set title of the embed to "카린봇 ㅡ 일반공지"
+						set the colour of the embed to GREEN
+						set the description of embed to "%{공지}%%nl%%nl%:link: [카린봇 추천하러 가기](https://koreanbots.dev/bots/%discord id of event-bot%)%nl%:link: [카린봇 지원 디스코드 입장하기](https://discord.gg/sZ7E5Kt)%nl%:link: [카린봇 홈페이지 바로가기](http://karinbot.new.so)%nl%:link: [팀 리에토 디스코드 입장하기](https://discord.gg/55n4jnm)%nl%:link: [카린봇 이용약관 확인하기](http://gg.gg/KRBiinf2)%nl%%nl%항상 이용해주셔서 감사합니다."
+						set the footer of embed to footer with text "사용자: %event-user% - 인증됨 | %now%"
+				if {공지확인} is "중요":
+					create embed:
+						set title of the embed to "카린봇 ㅡ 중요공지"
+						set the colour of the embed to ORANGE
+						set the description of embed to "%{공지}%%nl%%nl%:link: [카린봇 추천하러 가기](https://koreanbots.dev/bots/%discord id of event-bot%)%nl%:link: [카린봇 지원 디스코드 입장하기](https://discord.gg/sZ7E5Kt)%nl%:link: [카린봇 홈페이지 바로가기](http://karinbot.new.so)%nl%:link: [팀 리에토 디스코드 입장하기](https://discord.gg/55n4jnm)%nl%:link: [카린봇 이용약관 확인하기](http://gg.gg/KRBiinf2)%nl%%nl%항상 이용해주셔서 감사합니다."
+						set the footer of embed to footer with text "사용자: %event-user% - 인증됨 | %now%"
+				loop {cid::*}:
+					set {announce} to loop-value
+					send last created embed to channel with id "%{announce}%" with "{@name}"
+					if {anncid} is not set:
+						set {anncid} to "%{announce}%"
+					else:
+						set {anncid} to "%{anncid}%%nl%%{announce}%"
+				create embed:
+					set the colour of the embed to GREEN
+					set the description of embed to "현재 추가된 모든 채널에 공지가 전송되었습니다.%nl%%{anncid}%"
+					edit {공지텍스트} to show last created embed
+			else:
+				create embed:
+					set the colour of the embed to GREEN
+					set the description of embed to "공지 보내기가 취소되었습니다."
+					edit {공지텍스트} to show last created embed
+			delete {공지}
+			delete {공지확인}
+			delete {anncid}
+			delete {공지텍스트}
+			stop

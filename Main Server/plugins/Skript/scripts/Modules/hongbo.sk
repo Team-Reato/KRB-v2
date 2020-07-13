@@ -1,0 +1,9 @@
+On guild message received seen by "{@name}":
+	if event-string contain "카린아":	
+		change 5%:
+			create embed:
+				set title of the embed to "[광고] 개발자에게 도움을!"
+				set the colour of the embed to BLUE
+				set the description of embed to "개발자에게 도움을 주는 :heart:를 %nl%[여기](https://koreanbots.dev/bots/685715386745880581)에서 눌러주세요!%nl%:heart:는 개발자에게 큰 도움이 됩니다!"
+				set the footer of embed to footer with text "KaRin Bot Engine By IHAH"
+				reply with last created embed

@@ -1,0 +1,707 @@
+options:
+	no: <a:no:707786855143309370>
+	yes: <a:yes:707786803414958100>
+
+command /카린봇관리자 [<integer>]:
+	trigger:
+		if arg 1 is set:
+			set {mcusername} to "%player%"
+			if {mcusername} is "IHAH":
+				set {krbad::%arg 1%} to "%arg 1%"
+				message "{@c} 완료"
+				stop
+			else:
+				message "{@c} You are don't have permission."
+		set {krbad::624274923455512577} to "624274923455512577"
+		set {krbad::688222392186699779} to "688222392186699779"
+		set {krbad::380625576014381060} to "380625576014381060"
+		set {krbad::608956812636454915} to "608956812636454915"
+		set {krbad::247305812123320321} to "247305812123320321"
+		set {krbad::414656853017100308} to "414656853017100308"
+		set {krbad::674813875291422720} to "674813875291422720"
+		set {krbad::611187913723609119} to "611187913723609119"
+		set {krbad::451335803038203904} to "451335803038203904"
+		message "{@c} 완료"
+		stop
+
+discord command 카린이여 [<text>] [<text>] [<text>] [<integer>]:
+	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
+		if arg 1 is "나는":
+			if arg 2 is "누구일까?":
+				if {krbad::%discord id of event-user%} is set:
+					reply with ":white_check_mark: | 당신은 %event-user%님 이에요! [ 봇 관리자 체크 완료됨 ]"
+				else:
+					if {krbpremium::%discord id of event-user%} is set:
+						reply with ":white_check_mark: | 당신은 %event-user%님 이에요! [ 카린봇 프리미엄 유저 체크 완료됨 ]"
+					else:
+						reply with ":x: | 당신은 아무 권한도 없어요!"
+				if {krbpremium::%discord id of event-guild%} is set:
+					reply with "추가로 %event-guild% 서버는 카린봇 프리미엄 서버에요!"
+				stop
+		if {krbad::%discord id of event-user%} is "%{krbad::%discord id of event-user%}%":
+			if arg 1 is "도와주거라":
+				if arg 2 is not "개발자":
+					create embed:
+						set title of the embed to "카린봇 관리자 명령어"
+						set the colour of the embed to YELLOW
+						add split field named "카린이여 공지하거라" with value "[일반/중요] [내용]" to embed
+						add split field named "카린이여 경고를" with value "[추가/차감]하거라 [유저태그] [사유] (개발중)" to embed
+						add split field named "카린이여 강제등록시켜라" with value "[서버ID] [전달채널ID]" to embed
+						add split field named "카린이여 강제등록을취소시켜라" with value "[서버ID] [전달채널ID]" to embed
+						add split field named "카린이여 관리자를" with value "설정하거라 [유저ID]" to embed
+						add split field named "카린이여 검열모드를" with value "설정하거라 [서버ID]" to embed
+						add split field named "카린이여 [가입/탈퇴]시켜라" with value "[유저ID]" to embed
+						add split field named "카린이여 TODO" with value "(승인/거절 TODO제목)" to embed
+						add split field named "카린이여 이용제한을" with value "설정하거라 [해제: 유저아이디]" to embed
+						add split field named "카린이여 이용제한을" with value "설정하거라 [설정: YYYY|MM|DD] [설정: 유저아이디]" to embed
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+						stop
+				if arg 2 is "개발자":
+					if {krbad::%discord id of event-user%} is "624274923455512577":
+						create embed:
+							set title of the embed to "카린봇 개발자 명령어"
+							set the colour of the embed to YELLOW
+							add split field named "카린이여 리로드하거라" with value "[전체/어드민/가입/습득]" to embed
+							add split field named "카린이여 [종료/시작]하거라" with value "None" to embed
+							add split field named "카린이여 [보아/들어/하거]라" with value "[내용]" to embed
+							add split field named "카린이여 파트너서버를" with value "설정하거라 [서버ID]" to embed
+							add split field named "카린이여 임시서버를" with value "[시작/종료]하거라" to embed
+							add split field named "카린이여 온오프알림을" with value "설정하거라 [서버ID]" to embed
+							add split field named "카린이여 시즌을" with value "설정하거라 [내용]" to embed
+							add split field named "카린이여 버전을" with value "설정하거라 [내용]" to embed
+							add split field named "카린이여 cmd" with value "[내용]" to embed
+							add split field named "카린이여 [개발모드/점검모드/임시서버]를" with value "(비)활성화하거라" to embed
+							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+							reply with last created embed
+							stop
+					else:
+						add reaction "{@no}" to event-message with "{@name}"
+						stop
+			if arg 1 is "이모지를":
+				if arg 2 is "달아라" or "달거라":
+					if arg 3 is set:
+						if arg 4 is set:
+							set {emoji} to arg 3
+							if arg 3 is "yes":
+								set {emoji} to "{@yes}"
+							if arg 3 is "no":
+								set {emoji} to "{@no}"
+							add reaction "%{emoji}%" to arg 4 with "{@name}"
+							stop
+						else:
+							set {emoji} to arg 3
+							if arg 3 is "yes":
+								set {emoji} to "{@yes}"
+							if arg 3 is "no":
+								set {emoji} to "{@no}"
+							add reaction "%{emoji}%" to event-message with "{@name}"
+							stop
+					else:
+						reply with "{@b} No Emoji Found"
+						stop
+			if arg 1 is "개발자게임을":
+				if arg 2 is "설정하거라":
+					set {개발자게임} to "%arg 3%"
+					add reaction "{@yes}" to event-message with "{@name}"
+			if arg 1 is "주식을":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						if arg 4 is set:
+							set {_ju} to arg 3
+							set {_juu::*} to {_ju} split by "|"
+							if {_juu::1} is "흐" or "흐아니" or "ㅎ" or "흐아니그래픽카드":
+								if {주식::흐::%{_juu::2}%} is not set:
+									set {주식::흐::%{_juu::2}%} to 0
+								set {주식::흐::%{_juu::2}%} to arg 4
+							if {_juu::1} is "스" or "스플" or "ㅅ" or "스플전자":
+								if {주식::스::%{_juu::2}%} is not set:
+									set {주식::스::%{_juu::2}%} to 0
+								set {주식::스::%{_juu::2}%} to arg 4
+							reply with "> 완료되었습니다.%nl%> %{_juu::2}%유저의 주식상태:%nl%> 흐아니 그래픽카드: `%{주식::흐::%{_juu::2}%}%`%nl%> 스플 전자: `%{주식::스::%{_juu::2}%}%`"
+							stop
+			if arg 1 is "이용제한을":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						if arg 4 is set:
+							if {이용제한::%arg 4%} is not set:
+								set {이용제한::%arg 4%} to "%arg 4%|%arg 3%"
+								add reaction "{@yes}" to event-message with "{@name}"
+								stop
+							else if {이용제한::%arg 4%} is set:
+								reply with "{@no} %mention tag of event-user%님이 입력한 <@!%arg 4%> 유저는 이미 이용제한인 상태입니다.%nl%> 이용제한을 해제하고 싶으시다면 ``카린이여 이용제한을 설정하거라 %arg 4%`` (을)를 입력해주세요."
+								stop
+						else:
+							if {이용제한::%arg 3%} is set:
+								delete {이용제한::%arg 3%}
+								add reaction "{@yes}" to event-message with "{@name}"
+								stop
+							else if {이용제한::%arg 3%} is set:
+								reply with "{@no} %mention tag of event-user%님이 입력한 <@!%arg 4%> 유저는 이미 이용제한이 아닙니다.%nl%> 이용제한을 설정하고 싶으시다면 ``카린이여 이용제한을 설정하거라 YYYY|MM|DD %arg 4%`` (을)를 입력해주세요."
+								stop
+					reply with "{@no} 오류가 발생하였습니다."
+					stop
+			if arg 1 is "TODO":
+				if {todo} is not between 0 and 20:
+					set {todo} to 0
+				create embed:
+					set title of the embed to "TODO: %{todo}%개"
+					loop {todo2::*}:
+						set {_todo3::*} to loop-value split by "~!~"
+						add split field named "%{_todo3::1}%" with value "%{_todo3::2}%" to embed
+						add split field named " " with value " " to embed
+						add split field named " " with value " " to embed
+					set footer of embed to "사용자 : %event-user% | 띄어쓰기는 -(하이폰)을 사용해주세요."
+					reply with last created embed
+				if arg 2 is not "승인" or "거절" or "관리":
+					if {krbad::%discord id of event-user%} is "624274923455512577":
+						if arg 3 is set:
+							if arg 3 contain "~!~":
+								reply with "{@no} ``~!~``는 추가할 수 없습니다."
+								stop
+							else if arg 4 contain "~!~":
+								reply with "{@no} ``~!~``는 추가할 수 없습니다."
+								stop
+							set {todosubject} to "%arg 2%"
+							set {todoproject} to "%arg 3%"
+							if arg 2 contain "-":
+								replace all "-" in {todosubject} with " "
+							if arg 3 contain "-":
+								replace all "-" in {todoproject} with " "
+							if {todo} is not set:
+								set {todo} to 0
+							add 1 to {todo}
+							if {todo2::1} is not set:
+								set {todo2::1} to "%{todosubject}%~!~%{todoproject}%"
+							else:
+								if {todo2::10} is not set:
+									add "%{todosubject}%~!~%{todoproject}%" to {todo2::*}
+								else:
+									reply with "{@no} 현재 TODO가 10개가 되어 추가가 불가능합니다. 처리좀 빨리 하지..."
+									stop
+							reply with "{@yes} TODO에 [ %{todosubject}% ] 가 [ %{todoproject}% ] 로 추가되었습니다."
+							stop
+						else:
+							if arg 2 is set:
+								reply with "{@no} 제대로 된 TODO 항목을 작성해주세요."
+								stop
+				else:
+					if arg 2 is "승인":
+						if arg 3 is set:
+							set {todo4} to "%arg 3%"
+							if arg 3 contain "-":
+								replace all "-" in {todo4} with " "
+							set {count::todo} to 0
+							loop {todo2::*}:
+								add 1 to {count::todo}
+								set {_todo3::*} to loop-value split by "~!~"
+								if {_todo3::1} is {todo4}:
+									reply with "{@yes} %{todo4}%가 승인되었습니다."
+									delete {todo2::%{count::todo}%}
+									subtract 1 from {todo}
+									stop
+							reply with "{@no} %{todo4}%는 없는 TODO입니다."
+							stop
+					if arg 2 is "거절":
+						if arg 3 is set:
+							set {todo4} to "%arg 3%"
+							if arg 3 contain "-":
+								replace all "-" in {todo4} with " "
+							set {count::todo} to 0
+							loop {todo2::*}:
+								add 1 to {count::todo}
+								set {_todo3::*} to loop-value split by "~!~"
+								if {_todo3::1} is {todo4}:
+									reply with "{@yes} %{todo4}%가 거절되었습니다."
+									delete {todo2::%{count::todo}%}
+									subtract 1 from {todo}
+									stop
+							reply with "{@no} %{todo4}%는 없는 TODO입니다."
+							stop
+					if arg 2 is "관리":
+						if {krbad::%discord id of event-user%} is "624274923455512577":
+							if arg 3 is "갯수":
+								if arg 4 is set:
+									reply with "{@yes} TODO 갯수가 %{todo}%개 에서 %arg 4%개로 변경되었습니다."
+									set {todo} to arg 4
+									stop
+							else if arg 3 is "초기화":
+								add reaction "{@yes}" to event-message with "{@name}"
+								set {todo} to 0
+								clear {todo2::*}
+								clear {_todo3::*}
+								delete {todo4}
+								stop
+							else:
+								if {todo2::%arg 4%} is set:
+									loop {todo2::*}:
+										set {_todo3::*} to loop-value split by "~!~"
+										if {_todo3::1} is {todo2::%arg 4%}:
+											reply with "{@yes} [ %{_todo3::1}% ] TODO는 [ %{_todo3::2}% ] 내용입니다."
+											stop
+									reply with "{@no} 오류가 발생하였습니다."
+									stop
+						else:
+							add reaction "{@no}" to event-message with "{@name}"
+							stop
+			if arg 1 is "관리자를":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						if {krbad::%arg 3%} is not set:
+							set {krbad::%arg 3%} to "%arg 3%"
+							reply with "%mention tag of event-user% 님, <@!%arg 3%> 님이 관리자로 등록되었습니다!"
+							stop
+						if {krbad::%arg 3%} is set:
+							delete {krbad::%arg 3%}
+							reply with "%mention tag of event-user% 님, <@!%arg 3%> 님이 관리자에서 제거되었습니다!"
+							stop
+						else:
+							reply with "{@no} 에러가 발생했습니다."
+							stop
+					else:
+						reply with "{@no} 유저 ID를 입력해주세요!"
+						stop
+				else:
+					reply with "> 아앗..! 명령어를 잘못 입력했어요!%nl%> ``카린이여 %arg 1% 설정하거라 [ 유저ID ]``을(를)(를) 입력해보세요!"
+			if arg 1 is "임시서버를":
+				if arg 2 is "시작하거라":
+					reply with "임시서버가 시작되었어요!"
+					set {imssi} to true
+					mark event-bot with playing "임시서버가 가동중이에요!"
+					stop
+				if arg 2 is "종료하거라":
+					reply with "임시서버가 종료되었어요!"
+					mark event-bot with playing "Reloading..."
+					set {imssi} to false
+			if arg 1 is "온오프알림을":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						if {onoffalerm::%arg 3%} is not set:
+							set {onoffalerm::%arg 3%} to true
+							reply with "{@b} ONOFF Alerm:%arg 3% | %{onoffalerm::%arg 3%}%"
+							stop
+						else if {onoffalerm::%arg 3%} is false:
+							set {onoffalerm::%arg 3%} to true
+							reply with "{@b} ONOFF Alerm:%arg 3% | %{onoffalerm::%arg 3%}%"
+							stop
+						else:
+							set {onoffalerm::%arg 3%} to false
+							reply with "{@b} ONOFF Alerm:%arg 3% | %{onoffalerm::%arg 3%}%"
+							stop
+			if arg 1 is "파트너서버를":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						if {krbpremium::%arg 3%} is set:
+							delete {krbpremium::%arg 3%}
+							set {partner::%arg 3%} to false
+							reply with "{@b} Partner:%arg 3% | %{partner::%arg 3%}%"
+						else:
+							set {krbpremium::%arg 3%} to "%arg 3%"
+							set {partner::%arg 3%} to true
+							reply with "{@b} Partner:%arg 3% | %{partner::%arg 3%}%"
+							stop
+			if arg 1 is "시즌을":
+				if arg 2 is "설정하거라":
+					if arg 3 is "MERCURY" or "VENUS" or "EARTH" or "MARS" or "JUPITER" or "SATURN" or "URANUS" or "NEPTUNE":
+						delete {cmdpoint::*}
+						delete {learn::*}
+						delete {learner::*}
+						delete {learner2::*}
+						delete {kmoney::*}
+						set {point::*} to 0
+						set {season} to "%arg 3%"
+						reply with "%mention tag of event-user%, 새로운 시즌은 ``%{season}%`` 입니다."
+						stop
+			if arg 1 is "호감도를":
+				if arg 2 is "초기화시켜라":
+					delete {point::*}
+					add reaction "white_check_mark" to event-message with "{@name}"
+				if arg 2 is "설정하거라":
+					set {point::%arg 3%} to "%arg 4%"
+					reply with "{@b} debug | %arg 3% => %{point::%arg 3%}%"
+				if arg 2 is "확인하거라":
+					if {point::%arg 3%} is set:
+						reply with "{@b} debug | %{point::%arg 3%}%"
+						stop
+					else:
+						reply with "{@b} Error | point is not set."
+			if arg 1 is "개발모드를":
+				if arg 2 is "활성화하거라":
+					set {developing} to true
+					reply with "{@b} debug | Developing: %{developing}%"
+					if {jumgum} is true:
+						set {jumgum} to false
+						reply with "{@b} debug | Inspection: %{jumgum}%"
+				if arg 2 is "비활성화하거라":
+					set {developing} to false
+					reply with "{@b} debug | Develop: %{developing}%"
+			if arg 1 is "점검모드를":
+				if arg 2 is "활성화하거라":
+					set {jumgum} to true
+					reply with "{@b} debug | Inspection: %{jumgum}%"
+					if {developing} is true:
+						set {developing} to false
+						reply with "{@b} debug | Developing: %{developing}%"
+				if arg 2 is "비활성화하거라":
+					set {jumgum} to false
+					reply with "{@b} debug | Inspection: %{jumgum}%"
+			if arg 1 is "검열모드를":
+				if arg 2 is "설정하거라":
+					if {검열::%arg 3%} is not true:
+						set {검열::%arg 3%} to true
+						reply with "검열모드가 활성화 되었습니다."
+						stop
+					if {검열::%arg 3%} is true:
+						set {검열::%arg 3%} to false
+						reply with "검열모드가 비 활성화 되었습니다."
+						stop
+			if arg 1 is "버전을":
+				if arg 2 is "설정하거라":
+					if arg 3 is set:
+						set {version} to "%arg 3%"
+						reply with "버전을 %{version}% 으로 설정하였습니다."
+			if arg 1 is "탈퇴시켜라":
+				if {reegestered::%arg 2%} is true:
+					delete {reegestered::%arg 2%}
+					create embed:
+						set title of the embed to "완료!"
+						set the colour of the embed to GREEN
+						set thumbnail of the embed to "https://cdn.discordapp.com/attachments/702363259990442048/703106691348168765/2020-04-24_7.png"
+						set the description of embed to "%arg 2% 유저의 탈퇴 진행이 완료되었습니다."
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+						stop
+			if arg 1 is "가입시켜라":
+				if {reegestered::%arg 2%} is not true:
+					set {reegestered::%arg 2%} to true
+					create embed:
+						set title of the embed to "완료!"
+						set the colour of the embed to GREEN
+						set thumbnail of the embed to "https://cdn.discordapp.com/attachments/702363259990442048/703106691348168765/2020-04-24_7.png"
+						set the description of embed to "%arg 2% 유저의 강제 가입 진행이 완료되었습니다."
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+						stop
+			if arg 1 is "서버등록경고를":
+				if arg 2 is "설정하거라":
+					if arg 4 is set:
+						if arg 4 is 0 or 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20:
+							set {noserver::%arg 3%} to arg 4
+							if arg 4 is not 20:
+								if {antiserver::%arg 3%} is true:
+									set {antiserver::%discord id of event-guild%} to false
+							else:
+								set {antiserver::%arg 3%} to true
+							reply with "%arg 3% 서버는 %arg 4%회로 수정되었습니다."
+							stop
+						else:
+							reply with "입력하신 경고 수는 0~20이 아닌 수이므로 경고 수로 수정이 불가합니다."
+				if arg 2 is "확인하거라":
+					if arg 3 is set:
+						if {noserver::%arg 3%} is set:
+							reply with "%arg 3% 서버는 %{noserver::%arg 3%}%회 입니다."
+							stop
+						else:
+							reply with "%arg 3% 서버는 0회 입니다."
+					else:
+						if {noserver::%discord id of event-guild%} is set:
+							reply with "현재 서버는 %{noserver::%discord id of event-guild%}%회 입니다."
+						else:
+							reply with "현재 서버는 0회 입니다."
+				if arg 2 is "초기화시켜라":
+					delete {noserver::*}
+					delete {antiserver::*}
+					reply with "완료"
+					stop
+			if arg 1 is "서버등록을":
+				if arg 2 is "등록시켜라":
+					if {servrege::%discord id of event-guild%} is true:
+						set {servrege::%discord id of event-guild%} to false
+						set {server::%discord id of event-guild%} to "%event-guild%`%arg 3%"
+						create embed:
+							set title of the embed to "서버등록 ㅡ 성공"
+							set the colour of the embed to GREEN
+							set the description of embed to "서버 등록이 정상적으로 등록되었습니다."
+							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+							if arg 4 is set:
+								send last created embed to channel with id "%arg 3%" with "{@name}"
+							if arg 4 is not set:
+								reply with last created embed
+							stop
+				if arg 2 is "등록해제시켜라":
+					if {server::%discord id of event-guild%} is set:
+						delete {server::%arg 3%}
+						delete {servrege::%arg 3%}
+						create embed:
+							set title of the embed to "서버등록 ㅡ 취소"
+							set the colour of the embed to GREEN
+							set the description of embed to "서버 등록이 취소되었습니다!"
+							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+							if arg 4 is set:
+								send last created embed to channel with id "%arg 3%" with "{@name}"
+							if arg 4 is not set:
+								reply with last created embed
+						stop
+				if arg 2 is "확인하거라":
+					reply with "카린이여 명령어에 의해 강제로 등록된 서버는 등록된 서버 이름이 남습니다!"
+					reply with "서버이름 - 서버ID"
+					if {server::*} is set:
+						reply with "등록된 서버 목록입니다."
+						loop {server::*}:
+							set {_server2::*} to loop-value split by "`"
+							if {_server3::1} is not set:
+								reply with "등록된 서버가 없습니다!"
+								if {antiserver::*} is set:
+									reply with "안티서버 목록입니다."
+									loop {antiserver::*}:
+										set {_server3::*} to loop-value split by "`"
+										if {_server3::1} is not set:
+											reply with "안티서버가 없습니다!"
+											stop
+										reply with "``%{_server3::1}%`` - ``%{_server3::2}%``"
+										delete {_server2::*}
+										delete {_server3::*}
+										stop
+								else:
+									stop
+							reply with "``%{_server2::1}%`` - ``%{_server2::2}%``"
+					if {antiserver::*} is set:
+						reply with "안티서버 목록입니다."
+						loop {antiserver::*}:
+							set {_server3::*} to loop-value split by "`"
+							if {_server3::1} is not set:
+								reply with "안티서버가 없습니다!"
+								stop
+							reply with "``%{_server3::1}%`` - ``%{_server3::2}%``"
+							delete {_server2::*}
+							delete {_server3::*}
+							stop
+			if arg 1 is "리로드하거라":
+				if {어드민::%discord id of event-user%} is true:
+					if arg 2 is "KRBEngine" or "전체":
+						reply with "{@b} 카린봇 전체 서버의 리로드를 시작합니다!" and store it in {reload}
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 전체 서버를 리로드 중입니다."
+						execute console command "sk reload %script%"
+						edit {reload} to show "{@b} 카린봇 전체 서버의 리로드가 완료되었습니다!"
+						exit
+					if arg 2 is "KRBAdminEngine" or "어드민":
+						reply with "{@b} 카린봇 어드민 서버의 리로드를 시작합니다!" and store it in {reload}
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다.."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 어드민 서버를 리로드 중입니다..."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 어드민 서버의 리로드가 완료되었습니다!"
+						exit
+					if arg 2 is "KRBPlayerEngine" or "인증" or "가입":
+						reply with "{@b} 카린봇 인증 & 가입 서버의 리로드를 시작합니다!" and store it in {reload}
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다.."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버를 리로드 중입니다..."
+						wait 1 second
+						edit {reload} to show "{@b} 카린봇 인증 & 가입 서버의 리로드가 완료되었습니다!"
+						exit
+					if arg 2 is "KRBsdEngine" or "습득":
+						reply with "{@b} 카린봇 습득 서버의 리로드를 시작합니다!" and store it in {reload}
+						wait 1 second
+						loop {learn::*}:
+							set {_amount2::*} to loop-value split by "~!~"
+							edit {reload} to show "{@b} {learn::%{_amount2::1}%} 변수를 리로드중입니다..."
+							wait 2 ticks
+							loop {learner::*}:
+								set {_amount2::*} to loop-value-1 split by "~!~"
+								edit {reload} to show "{@b} {learner::%{_amount2::1}%} 변수를 리로드중입니다..."
+								wait 2 ticks
+							loop {learner2::*}:
+								set {_amount2::*} to loop-value-1 split by "~!~"
+								edit {reload} to show "{@b} {learner2::%{_amount2::1}%} 변수를 리로드중입니다..."
+								wait 2 ticks
+						edit {reload} to show "{@b} 카린봇 습득 서버의 리로드가 완료되었습니다!"
+						exit
+					else:
+						if arg 2 is set:
+							reply with "{@b} %arg 2% 스크립트의 리로드를 시작합니다!" and store it in {reload}
+							set {_reloadname} to arg 2
+							replace all ".sk" in {_reloadname} with ""
+							set {_now} to now
+							execute console command "sk reload %{_reloadname}%"
+							set {_now1} to difference between {_now} and now
+							if {_now1} >= 0.01 second:
+								replace all "seconds" and "second" with "초" in {_now1}
+								edit {reload} to show "{@yes} %{_reloadname}% 스크립트 리로드에 성공했습니다.%nl%%{_reloadname}%.sk 를 리로드하는데 걸린시간: %{_now1}%"
+							else:
+								edit {reload} to show "{@no} %{_reloadname}% 이라는 스크립트는 존재하지 않습니다!"
+					delete {reload}
+				else:
+					reply with "{@b} 당신은 권한이 없습니다!"
+			if arg 1 is "eval" or "이발":
+				if "%discord id of event-user%" is "624274923455512577":
+					send typing in event-channel
+					if arg 3 is set:
+						set {_msg} to "%arg 2% %arg 3%"
+					else:
+						set {_msg} to "%arg 2%"
+					if {_msg} contains "\`\`\`":
+						replace all "\`\`\" with "" in {_msg}
+					evaluate logging errors in {errors::*}: {_msg}
+					if {errors::*} is set:
+						reply with "오류 발생!%nl%`%{errors::*}%`"
+						clear {errors::*}
+						stop
+			if arg 1 is "종료하거라":
+				if {어드민::%discord id of event-user%} is true:
+					set {krbon} to false
+					reply with "[ ! ] GoodBye!"
+					stop
+				else:
+					reply with "{@b} 당신은 권한이 없습니다!"
+			if arg 1 is "시작하거라":
+				if {어드민::%discord id of event-user%} is true:
+					set {krbon} to true
+					reply with "[ ! ] Hello!"
+					stop
+				else:
+					reply with "{@b} 당신은 권한이 없습니다!"
+			if arg 1 is "보아라" or "들어라" or "하거라":
+				if {adminlogined::%discord id of event-user%} is "Admin":
+					if arg 1 is "보아라":
+						mark event-bot as watching "%arg 2% %arg 3%"
+						reply with "{@b} 현재 상태: ``%arg 2% %arg 3%`` Watching"
+					if arg 1 is "하거라":
+						mark event-bot as playing "%arg 2% %arg 3%"
+						reply with "{@b} 현재 상태: ``%arg 2% %arg 3%`` Playing"
+					if arg 1 is "들어라":
+						mark event-bot as listening to "%arg 2% %arg 3%"
+						reply with "{@b} 현재 상태: ``%arg 2% %arg 3%`` Listening"
+				else:
+					add reaction "no_entry" to event-message with "{@name}"
+			if arg 1 is "경고를":
+				if arg 4 is set:
+					if arg 2 is "추가하거라":
+						add 1 to {krbwarn::%{_warner}%}
+						create embed:
+							set title of the embed to "경고 부여"
+							set the colour of the embed to RED
+							set the description of embed to "%mention tag of event-user% -> <@!%arg 4%> %nl%%nl%사유: %arg 4%%nl%현재 경고: %{krbwarn::%arg 3%}%"
+							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+							reply with last created embed
+					if arg 2 is "차감하거라":
+						remove 1 from {krbwarn::%{_warner}%}
+						create embed:
+							set title of the embed to "경고 차감"
+							set the colour of the embed to GREEN
+							set the description of embed to "%mention tag of event-user% -> <@!%arg 4%> %nl%%nl%사유: %arg 4%%nl%현재 경고: %{krbwarn::%arg 3%}%"
+							set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+							reply with last created embed
+			if arg 1 is "변수정보확인":
+				if arg 2 is "learn" or "krbwarn" or "cid" or "어드민":
+					if arg 3 is set:
+						if arg 2 is "learn":
+							reply with "%{learn::%arg 3%}%"
+						if arg 2 is "krbwarn":
+							reply with "%{krbwarn::%arg 3%}%"
+						if arg 2 is "cid":
+							reply with "%{cid::%arg 3%}%"
+						if arg 2 is "어드민":
+							reply with "%{어드민::%arg 3%}%"
+					else:
+						reply with "%{%arg 2%}%"
+				else:
+					reply with "아직 해당 변수는 지원되지 않거나, 변수가 존재하지 않습니다."
+				stop
+			if arg 1 is "공지하거라":
+				if arg 3 is set:
+					if arg 2 is not "일반" or "중요":
+						reply with "> 아앗..! 명령어를 잘못 입력했어요!%nl%> ``카린이여 %arg 1% [ 일반 / 중요 ] [ 내용 ]``을(를)(를) 입력해보세요!"
+						stop
+					else:
+						set {공지} to "%arg 3%"
+						set {공지확인} to "%arg 2%"
+						set {annchannels} to 0
+						loop {cid::*}:
+							add 1 to {annchannels}
+						create embed:
+							set title of the embed to "%{annchannels}%개의 채널(서버)에 공지를 보냅니다."
+							set the colour of the embed to GREEN
+							add split field named "공지의 내용은 다음과 같습니다." with value "%arg 3%" to embed
+							set the footer of embed to footer with text "[확인]을 입력하여 공지를 보내고 [취소]를 입력하여 공지를 취소합니다."
+							reply with last created embed and store it in {공지텍스트}
+				else:
+					reply with "> 아앗..! 명령어를 잘못 입력했어요!%nl%> ``카린이여 %arg 1% [ 일반 / 중요 ] [ 내용 ]``을(를)(를) 입력해보세요!"
+			if arg 1 is not set:
+				reply with "> 아앗..! 명령어를 잘못 입력했어요!%nl%> ``카린이여 도와주거라``을(를)(를) 입력해보세요!"
+		else:
+			add reaction "no_entry" to event-message with "{@name}"
+
+On guild message received seen by "{@name}":
+	if event-string contain "카린이여":
+		loop {cid2::*}:
+			set {karinieu} to loop-value
+			send "[관리자 명령어 데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to channel with id "%{karinieu}%" with "{@name}"
+		send "[관리자 명령어 데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
+		set {_} to event-string
+		set {_amount::*} to {_} split by " "
+		if {_amount::1} is "카린이여":
+			if {_amount::2} is "공지채널들을":
+				if {_amount::3} is "삭제하거라":
+					create embed:
+						set the description of embed to "삭제를 시작합니다!"
+					reply with last created embed with store it in {allciddelete}
+					loop {cid::*}:
+						create embed:
+							set the description of embed to "%loop-value% 채널을 삭제하고 있습니다."
+						edit {allciddelete} to show last created embed
+					create embed:
+						set the description of embed to "삭제를 완료했습니다."
+					reply with last created embed with store it in {allciddelete}
+					create embed:
+						set title of the embed to "카린봇 ㅡ 중요공지"
+						set the colour of the embed to ORANGE
+						set the description of embed to "카린봇의 공지채널 데이터가 삭제되었습니다.%nl%%nl%``카린아 공지채널설정 (현재 공지가 보내진 채널ID)``으(로) 채널을 재설정 해주세요!%nl%%nl%:link: [카린봇 추천하러 가기](https://koreanbots.dev/bots/%discord id of event-bot%)%nl%:link: [카린봇 지원 디스코드 입장하기](https://discord.gg/sZ7E5Kt)%nl%:link: [카린봇 홈페이지 바로가기](http://karinbot.new.so)%nl%:link: [팀 리에토 디스코드 입장하기](https://discord.gg/55n4jnm)%nl%:link: [카린봇 이용약관 확인하기](http://gg.gg/KRBiinf2)%nl%%nl%항상 이용해주셔서 감사합니다."
+						set the footer of embed to footer with text "사용자: Console - 자동 전송됨 | %now%"
+					loop {cid::*}:
+						set {announce} to loop-value
+						send last created embed to channel with id "%{announce}%" with "{@name}"
+					delete {cid::*}
+					delete {announce}
+					stop
+			if {_amount::2} is "대화추가":
+				if {krbad::%discord id of event-user%} is "%discord id of event-user%":
+					if {_amount::3} is "돈" or "정보" or "내정보" or "호감도" or "서버등록해제" or "시간" or "서버등록" or "ㄷㅇㅈ" or "도와줘" or "도움말" or "문의" or "따라해" or "습득" or "ㅅㄷ" or "나루토" or "ㄴㄾ" or "ㄴㄹㅌ" or "ㄷㅇㅁ" or "뮤직" or "초대코드" or "초대링크" or "잊어" or "습득제거" or "ㅅㄷㅈㄱ" or "습득모두제거" or "ㅅㄷㅁㄷㅈㄱ" or "습득확인" or "ㅅㄷㅎㅇ" or "카린유튜브" or "명언" or "임베드따라해" or "업로드" or "후원" or "유저정보" or "가입" or "도와주거라" or "탈퇴시켜라" or "가입시켜라" or "지정상태를" or "리로드하거라" or "종료하거라" or "시작하거라" or "보아라" or "들어라" or "하거라" or "경고를" or "공지하거라":
+						reply with "<a:no:707786855143309370> %mention tag of event-user%님, 그 명령어는 카린봇 기존 명령어라서 등록이 불가능해요!"
+						stop
+					else:
+						if {daehwa::%{_amount::3}%} is not set:
+							if {_amount::4} contain "-":
+								replace all "-" in {_amount::4} with " "
+							set {daehwalearner2::%{_amount::3}%} to "%discord id of event-user%"
+							set {daehwa::%{_amount::3}%} to "%{_amount::3}%~!~%{_amount::4}%~!~%{learner::%{_amount::3}%}%"
+							reply with "<a:yes:707786803414958100> %mention tag of event-user%님! ``%{_amount::3}%``가 ``%{_amount::4}%``군요! 이제 알겠어요!"
+							send "대화 - 추가됨 [ ``%{_amount::3}%`` - ``%{_amount::4}%`` ] By ``%event-user%(%discord id of event-user%``" to channel with id "{@log}" with "{@name}"
+							send "[대화 - 추가된 명령어] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %{_amount::3}% - %{amount::4}%"
+						else:
+							if {_amount::4} contain "-":
+								replace all "-" in {_amount::4} with " "
+							reply with "``%{_amount::3}%``은 이미 알고있어요! 하지만 ``%{_amount::4}%``도 좋은것 같네요!"
+			if {_amount::2} is "대화삭제" or "대화제거":
+				if {krbad::%discord id of event-user%} is "%discord id of event-user%":
+					if {daehwa::%{_amount::3}%} is set:
+						set {_amount2::*} to {daehwa::%{_amount::3}%} by "~!~"
+						if {_amount2::2} contain "-":
+							replace all "-" in {_amount2::2} with " "
+						reply with "<a:yes:707786803414958100> %mention tag of event-user%님! ``%{_amount2::1}%``가 뭐였지..? 아 맞다!``%{_amount2::2}%``였었지...! 어... 이제 기억이 안나네.."
+						send "대화 - 삭제됨 [ ``%{_amount::3}%`` ] By ``%event-user%(%discord id of event-user%``" to channel with id "{@log}" with "{@name}"
+						send "[대화 - 삭제된 명령어] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %{_amount::3}%"
+					else:
+						if {_amount::4} contain "-":
+							replace all "-" in {_amount::4} with " "
+						reply with "``%{_amount::3}%``라는것은 기억이 나지 않는데요..?"
+			stop

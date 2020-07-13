@@ -1,0 +1,5 @@
+On guild message received seen by "{@name}":
+	if {logsugipserver::%discord id of event-guild%} is true:
+		send "[채팅데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to channel with id "%{logchannel::%discord id of event-guild%}%" with "{@name}"
+		if {logsugip::%discord id of event-guild%} is true:
+			send "[채팅데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console

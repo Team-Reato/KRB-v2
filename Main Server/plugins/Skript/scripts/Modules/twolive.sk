@@ -1,0 +1,8 @@
+On guild message received seen by "{@name}":
+	if "%discord id of event-channel%" is "718293765332402268":
+		stop
+	if "%discord id of event-channel%" is "717718644569669782" or "701271541173846137" or "723431183446442024":
+		add reaction "<a:yes:707786803414958100>" to event-message with "{@name}"
+	if "%discord id of event-channel%" is "723431183446442024":
+		wait 10 ticks
+		add reaction "<a:no:707786855143309370>" to event-message with "{@name}"

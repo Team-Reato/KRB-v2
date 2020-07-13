@@ -1,0 +1,38 @@
+discord command +m.pause:
+	trigger:
+		if {krbad::%discord id of event-user%} is "624274923455512577":
+			pause the track event-bot is playing
+			reply with ":pause_button: Paused!"
+		else:
+			create embed:
+				set title of the embed to "Error:"
+				set the colour of the embed to RED
+				set the description of embed to "You do not have permission!"
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+
+discord command +m.resume:
+	trigger:
+		if {krbad::%discord id of event-user%} is "624274923455512577":
+			resume the track event-bot is playing
+			reply with ":arrow_forward: Resumed!"
+		else:
+			create embed:
+				set title of the embed to "Error:"
+				set the colour of the embed to RED
+				set the description of embed to "You do not have permission!"
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+
+discord command +m.info:
+	trigger:
+		if event-bot is playing:
+			make embed:
+				set title of embed to title with text ":arrow_forward: %discord name of track event-bot is playing%" and link "%url of track event-bot is playing%"
+				set the colour of the embed to Cyan
+				add field named "Time remaining" with value "%difference between position of track event-bot is playing and duration of track event-bot is playing%" to embed
+				add field named "Author" with value "%authors of track event-bot is playing%" to embed
+		else:
+			make embed:
+				set title of embed to title with text ":stop_button: No track playing"
+				reply with last created embed

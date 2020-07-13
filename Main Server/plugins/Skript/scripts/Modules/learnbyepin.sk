@@ -1,0 +1,35 @@
+On guild message received seen by "{@name}":
+	if {learndeleteing::%discord id of event-user%} is true:
+		if event-string is not "카린아 잊히기 고정 종료":
+			if {learn::%event-string%} is set:
+				send "[습득명령어 삭제시도] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
+				if {krbad::%discord id of event-user%} is set:
+					loop {learn::*}:
+						set {_amount2::*} to loop-value split by "~!~"
+						if {_amount2::2} contain "(줄바꿈)":
+							replace all "(줄바꿈)" in {_amount2::2} with "%nl%"
+						if {dc} is not true:
+							set {dc} to true
+							send "[습득명령어 삭제성공] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
+							reply with "```%{_amount2::2}%```%nl%``%{_amount2::3}%``님이 알려준 명령어에요!"
+							delete {learn::%event-string%}
+							wait 2 tick
+							delete {dc}
+							stop
+				else:
+					if {learner2::%event-string%} is "%discord id of event-user%":
+						loop {learn::*}:
+							set {_amount2::*} to loop-value split by "~!~"
+							if {_amount2::2} contain "(줄바꿈)":
+								replace all "(줄바꿈)" in {_amount2::2} with "%nl%"
+							if {dc} is not true:
+								set {dc} to true
+								send "[습득명령어 삭제성공] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
+								reply with "```%{_amount2::2}%```%nl%``%{_amount2::3}%``님이 알려준 명령어에요!"
+								delete {learn::%event-string%}
+								wait 2 tick
+								delete {dc}
+								stop
+					else:
+						send "[습득명령어 삭제실패] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
+						stop

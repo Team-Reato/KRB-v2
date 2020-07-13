@@ -1,0 +1,7 @@
+On guild message received seen by "{@name}":
+	if event-string is "카린봇네임출력테스트":
+		reply with "%name of event-user%"
+	if event-string contain "카린봇역할제거테스트":
+		set {_} to event-string
+		set {_amount::*} to {_} split by " "
+		remove role with id "722618925245923329" from roles of user with id "%{_amount::2}%" in event-guild

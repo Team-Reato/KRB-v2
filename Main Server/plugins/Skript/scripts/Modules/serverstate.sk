@@ -1,0 +1,20 @@
+On guild message received seen by "{@name}":
+	if event-string contain "카린아" or "%{접두사::%discord id of event-guild%}% " or "%{접두사::%discord id of event-guild%}%" or "카린아?":
+		if event-string is "카린아 서버상태":
+			create embed:
+				set the colour of the embed to CYAN
+				if {jumgum} is true:
+					set title of the embed to "점검중!"
+					set the description of embed to "현재는 카린봇 점검모드 입니다!%nl%점검모드엔 관리자를 제외한 유저들이 명령어를 사용할 수 없습니다!"
+				else if {developing} is true:
+					set title of the embed to "개발중!"
+					set the description of embed to "현재는 카린봇 개발모드 입니다!%nl%명령어 사용이 가능합니다."
+				else if {imssi} is true:
+					set title of the embed to "임시서버 가동중!"
+					set the description of embed to "현재는 카린봇 임시서버 모드 입니다!%nl%임시서버 전용 명령어 사용만 가능합니다."
+				else:
+					set title of the embed to "정상 작동 중!"
+					set the description of embed to "현재는 정상 작동 중 입니다!%nl%명령어 사용이 가능합니다."
+				set the footer of embed to footer with text "KaRin Bot Reply Engine by IHAH"
+				reply with last created embed
+				stop

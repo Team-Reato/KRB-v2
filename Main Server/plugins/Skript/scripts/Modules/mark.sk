@@ -1,0 +1,17 @@
+every 10 seconds:
+	if {jumgum} is true:
+		mark "{@name}" as playing "현재 카린봇이 점검중입니다!"
+
+every 40 seconds:
+	if {jumgum} is not true:
+		mark "{@name}" as playing "HomePage | http://karinbot.new.so"
+		wait 10 seconds
+		mark "{@name}" as listening "[ 카린아 도와줘 ]"
+		wait 10 seconds
+		mark "{@name}" as playing "Version | %{version}%"
+		wait 10 seconds
+		mark "{@name}" as playing "개발자는 %{개발자게임}%"
+		set {automark1} to 0
+		wait 10 seconds
+	else:
+		mark "{@name}" as playing "현재 카린봇이 점검중입니다!"

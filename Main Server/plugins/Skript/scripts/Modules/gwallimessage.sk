@@ -1,0 +1,21 @@
+on track end seen by "{@name}":
+	remove "%{nowmusic::1}%DCISGREAT%{nowmusic::2}%" from {trr::*}
+	if {trr::*} is set:
+		loop {trr::*}:
+			add 1 to {count}
+			set {ttrr::*} to loop-value split at "DCISGREAT"
+			stop the track event-bot is playing
+			search youtube for {ttrr::1} and store the results in {rresults::*}
+			play {rresults::1}
+			set {nowmusic::1} to {ttrr::1}
+			set {nowmusic::2} to {ttrr::2}
+			delete {count}
+			delete {ttrr::*}
+			delete {rresults::*}
+			stop
+	else:
+		make event-bot leave vc
+		delete {count}
+		delete {ttrr::*}
+		delete {rresults::*}
+		delete {nowmusic::*}

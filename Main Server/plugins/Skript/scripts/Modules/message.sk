@@ -1,0 +1,57 @@
+discord command _cm [<integer>] [<text>]:
+	trigger:
+		if {krbad::%discord id of event-user%} is "624274923455512577" or "688222392186699779":
+			if arg 1 is set:
+				if arg 2 is set:
+					delete event-message with event-bot
+					send "%arg 2%" to channel with id "%arg 1%" with "{@name}"
+				else:
+					create embed:
+						set title of the embed to "Error:"
+						set the colour of the embed to RED
+						set the description of embed to "message is not set"
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+			else:
+				create embed:
+					set title of the embed to "Error:"
+					set the colour of the embed to RED
+					set the description of embed to "channel id is not set"
+					set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+					reply with last created embed
+		else:
+			create embed:
+				set title of the embed to "Error:"
+				set the colour of the embed to RED
+				set the description of embed to "You do not have permission."
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+
+discord command _dm [<integer>] [<text>]:
+	trigger:
+		if {krbad::%discord id of event-user%} is "624274923455512577":
+			if arg 1 is set:
+				if arg 2 is set:
+					delete event-message with event-bot
+					send "%arg 2%" to user with id "%arg 1%" with "{@name}"
+				else:
+					create embed:
+						set title of the embed to "Error:"
+						set the colour of the embed to RED
+						set the description of embed to "message is not set"
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+			else:
+				create embed:
+					set title of the embed to "Error:"
+					set the colour of the embed to RED
+					set the description of embed to "user id is not set"
+					set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+					reply with last created embed
+		else:
+			create embed:
+				set title of the embed to "Error:"
+				set the colour of the embed to RED
+				set the description of embed to "You do not have permission."
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed

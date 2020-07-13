@@ -1,0 +1,27 @@
+On guild message received seen by "{@name}":
+	if event-string contain "카린아" or "%{접두사::%discord id of event-guild%}% " or "%{접두사::%discord id of event-guild%}%" or "카린아?":
+		set {_} to event-string
+		set {_amount::*} to {_} split by " "
+		if {_amount::2} is "서버등록":
+			if {server::%discord id of event-guild%} is not set:
+				if {antiserver::%discord id of event-guild%} is not true:
+					set {servrege::%discord id of event-guild%} to true
+					create embed:
+						set title of the embed to "카린봇 ㅡ 서버 등록"
+						set the colour of the embed to YELLOW
+						set thumbnail of the embed to "https://cdn.discordapp.com/attachments/702363259990442048/703106691348168765/2020-04-24_7.png"
+						set the description of embed to "카린봇의 서버 진행을 등록하시면 [개인정보 수집 약관](http://gg.gg/KRBginf)과 [카린봇 이용 약관](http://gg.gg/KRBiinf2)에 동의하는 것으로 간주합니다.%nl%%nl%약관에 동의하시고 등록을 진행하시려면 10초 내에 ``동의``을(를),%nl%등록을 취소하려면 ``거절`` 을 입력하시거나 10초를 기다려 주세요."
+						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+						reply with last created embed
+					wait 10 seconds
+					if {servrege::%discord id of event-guild%} is true:
+						reply with "%mention tag of event-user%, 서버 등록이 취소되었습니다."
+						delete {servrege::%discord id of event-guild%}
+					stop
+				else:
+					reply with "서버 등록을 하지 않고 명령어를 %{noserver::%discord id of event-guild%}%회 사용하셨습니다."
+					reply with "서버 등록을 하지 않고 명령어를 20회 이상 사용하셨기 때문에 서버 등록이 불가능하게 되었습니다."
+					reply with "이 메세지가 보이면 봇 관리자를 불러 서버 등록 불가 상황을 해제시켜 주세요."
+					stop
+			else:
+				reply with "이미 등록되었습니다!"

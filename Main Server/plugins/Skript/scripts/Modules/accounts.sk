@@ -1,0 +1,45 @@
+discord command 동의:
+	trigger:
+		if {동의::%discord id of event-user%} is false:
+			set {동의::%discord id of event-user%} to true
+			set {거절::%discord id of event-user%} to true
+			set {reegestered::%discord id of event-user%} to true
+			create embed:
+				set title of the embed to "카린봇 가입"
+				set the colour of the embed to GREEN
+				set the description of embed to "가입이 완료되었습니다!"
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+		else if {servrege::%discord id of event-guild%} is true:
+			set {servrege::%discord id of event-guild%} to false
+			set {server::%discord id of event-guild%} to "%event-guild%`%discord id of event-guild%"
+			create embed:
+				set title of the embed to "서버등록 ㅡ 성공"
+				set the colour of the embed to GREEN
+				set the description of embed to "서버 등록이 정상적으로 등록되었습니다."
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+		else:
+			stop
+				
+discord command 거절:
+	trigger:
+		if {거절::%discord id of event-user%} is false:
+			set {거절::%discord id of event-user%} to true
+			set {동의::%discord id of event-user%} to true
+			create embed:
+				set title of the embed to "카린봇 가입"
+				set the colour of the embed to RED
+				set the description of embed to "가입이 취소되었습니다."
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+		else if {servrege::%discord id of event-guild%} is true:
+			delete {servrege::%discord id of event-guild%}
+			create embed:
+				set title of the embed to "서버등록 ㅡ 실패"
+				set the colour of the embed to RED
+				set the description of embed to "서버 등록에 실패하였습니다."
+				set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
+				reply with last created embed
+		else:
+			stop

@@ -1,0 +1,58 @@
+discord command 카주식 [<text>] [<text>] [<integer>]:
+	trigger:
+		if "%discord id of event-channel%" is "718293765332402268":
+			stop
+		if arg 1 is "지갑":
+			reply with "흐아니 그래픽카드: `%{주식::흐::%discord id of event-user%}%`주%nl%스플 전자: `%{주식::스::%discord id of event-user%}%`주"
+			set {흐} to 100
+			set {스} to 10
+		if arg 1 is "매수":
+			if arg 2 is not set:
+				reply with "> 아앗..! 명령어를 잘못 입력했어요!%nl%> ``카주식 매수 [회사명] [갯수]`` (을)를 입력해 주세요."
+			else:
+				if arg 2 is "흐" or "흐아니" or "ㅎ" or "흐아니그래픽카드":
+					#if arg 3 is "올인" or "모두":
+					#	if {kmoney::%discord id of event-user%} >= {흐}:
+					#		if {주식::흐::%discord id of event-user%} is not set:
+					#			set {주식::흐::%discord id of event-user%} to 0
+					#		add {kmoney::%discord id of event-user%}/{흐} to {주식::흐::%discord id of event-user%}
+					#		set {남은돈::%discord id of event-user%} to {kmoney::%discord id of event-user%}
+					#		set {주식구매::%discord id of event-user%} to {_amount::5} parsed as int
+					if arg 3 is between 1 and 500:
+						if {kmoney::%discord id of event-user%} >= {흐}*arg 3:
+							if {주식::흐::%discord id of event-user%} is not set:
+								set {주식::흐::%discord id of event-user%} to 0
+							set {유저} to {흐}*arg 3
+							add {kmoney::%discord id of event-user%}/{유저} to {주식::흐::%discord id of event-user%}
+							set {남은돈::%discord id of event-user%} to {kmoney::%discord id of event-user%}-{흐}*arg 3
+							set {주식구매::%discord id of event-user%} to arg 3
+						else:
+							reply with "당신은 그만큼 돈이 없는 것 같은데요?"
+							stop
+					else:
+						reply with "주식을 1개보다 작거나 500개보다 크게 구매할 수 없어요!"
+						stop
+					reply with "`흐아니그래픽카드` 회사의 주식을 `%{주식구매::%discord id of event-user%}%`주 구매하였습니다. 남은 돈: `%{남은돈::%discord id of event-user%}%`K"
+				if arg 2 is "스" or "스플" or "ㅅ" or "스플전자":
+					#if {_amount::5} is "올인" or "모두":
+					#	if {kmoney::%discord id of event-user%} >= {스}:
+					#		if {주식::스::%discord id of event-user%} is not set:
+					#			set {주식::스::%discord id of event-user%} to 0
+					#		add {kmoney::%discord id of event-user%}/{스} to {주식::스::%discord id of event-user%}
+					#		set {남은돈::%discord id of event-user%} to {kmoney::%discord id of event-user%}
+					#		set {주식구매::%discord id of event-user%} to {_amount::5} parsed as int
+					if arg 3 is between 1 and 500:
+						if {kmoney::%discord id of event-user%} >= {스}*arg 3:
+							if {주식::스::%discord id of event-user%} is not set:
+								set {주식::스::%discord id of event-user%} to 0
+							set {유저} to {스}*arg 3
+							add {kmoney::%discord id of event-user%}/{유저} to {주식::스::%discord id of event-user%}
+							set {남은돈::%discord id of event-user%} to {kmoney::%discord id of event-user%}-{스}*arg 3
+							set {주식구매::%discord id of event-user%} to arg 3
+						else:
+							reply with "당신은 그만큼 돈이 없는 것 같은데요?"
+							stop
+					else:
+						reply with "주식을 1개보다 작거나 500개보다 크게 구매할 수 없어요!"
+						stop
+					reply with "`스플전자` 회사의 주식을 `%{주식구매::%discord id of event-user%}%`주 구매하였습니다. 남은 돈: `%{남은돈::%discord id of event-user%}%`K"

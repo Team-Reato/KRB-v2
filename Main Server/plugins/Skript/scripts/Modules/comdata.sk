@@ -1,0 +1,3 @@
+On guild message received seen by "{@name}":
+	if event-string contain "카린아" or "%{접두사::%discord id of event-guild%}% " or "%{접두사::%discord id of event-guild%}%" or "카린아?":
+		send "[명령어데이터] %discord id of event-user%/%event-user%/%discord id of event-guild%/%event-guild%/%discord id of event-channel%/%event-channel% : %event-string%" to console
