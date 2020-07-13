@@ -4,7 +4,7 @@
 # 본 문서는 CC BY-NC-SA 2.0 KR에 따라 이용이 가능합니다.
 # https://creativecommons.org/licenses/by-nc-sa/2.0/kr/
 
-# version = [ 1.1.1 release ]
+# version = [ 1.1.3 release ]
 
 options:
 	# 카린봇 Original Setting
@@ -453,10 +453,6 @@ On guild message received seen by "{@name}":
 				if {_amount::3} is "서버관리" or "서버설정" or "tjqjrhksfl" or "tjqjtjfwjd" or "기본" or "ㄱㅂ" or "습득" or "ㅅㄷ" or "rlqhs" or "rq" or "tmqemr" or "te" or "ajsl" or "ehs" or "money":
 					reply with "%mention tag of event-user%"
 				if {_amount::3} is not "서버관리" or "서버설정" or "tjqjrhksfl" or "tjqjtjfwjd" or "기본" or "ㄱㅂ" or "습득" or "ㅅㄷ" or "rlqhs" or "rq" or "tmqemr" or "te" or "ajsl" or "ehs" or "money":
-					#add reaction "regional_indicator_d" to event-message with "{@name}"
-					#wait 0.5 seconds
-					#add reaction "regional_indicator_m" to event-message with "{@name}"
-					#wait 0.5 seconds
 					create embed:
 						set title of the embed to "카린봇 도움말 목록"
 						set the colour of the embed to YELLOW
@@ -484,10 +480,6 @@ On guild message received seen by "{@name}":
 							reply with last created embed
 				if {_amount::3} is "기본" or "ㄱㅂ" or "rlqhs" or "rq":
 					if {_amount::4} is not "2" or "3":
-						#add reaction "regional_indicator_d" to event-message with "{@name}"
-						#wait 0.5 seconds
-						#add reaction "regional_indicator_m" to event-message with "{@name}"
-						#wait 0.5 seconds
 						create embed:
 							set title of the embed to "카린봇 메인 명령어"
 							set the colour of the embed to YELLOW
@@ -531,10 +523,6 @@ On guild message received seen by "{@name}":
 							if {jumgum} is not true:
 								reply with last created embed
 				if {_amount::3} is "습득" or "ㅅㄷ" or "tmqemr" or "te":
-					#add reaction "regional_indicator_d" to event-message with "{@name}"
-					#wait 0.5 seconds
-					#add reaction "regional_indicator_m" to event-message with "{@name}"
-					#wait 0.5 seconds
 					create embed:
 						set title of the embed to "카린봇 습득 명령어"
 						set the colour of the embed to YELLOW
@@ -543,12 +531,7 @@ On guild message received seen by "{@name}":
 						set the footer of embed to footer with text "KaRin Bot Engine by IHAH"
 						if {jumgum} is not true:
 							reply with last created embed
-							#send last created embed to user with id "%discord id of event-user%" with "{@name}"
 				if {_amount::3} is "돈" or "머니" or "ehs" or "ajsl" or "money":
-					#add reaction "regional_indicator_d" to event-message with "{@name}"
-					#wait 0.5 seconds
-					#add reaction "regional_indicator_m" to event-message with "{@name}"
-					#wait 0.5 seconds
 					create embed:
 						set title of the embed to "카린봇 메인 명령어"
 						set the colour of the embed to YELLOW
@@ -560,7 +543,6 @@ On guild message received seen by "{@name}":
 						set the footer of embed to footer with text "KaRin Bot Money Engine by IHAH"
 						if {jumgum} is not true:
 							reply with last created embed
-							#send last created embed to user with id "%discord id of event-user%" with "{@name}"
 			else if {_amount::2} is "밴목록" or "밴" or "언밴" or "추방":
 				if {_amount::2} is "밴목록":
 					grab bans of event-guild
