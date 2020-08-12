@@ -17,6 +17,6 @@
 
 # Vote
 
-* KR: 카린봇을 투표하시려면 [여기](https://koreanbots.dev/bots/685715386745880581)에서 Heart를 눌러주세요!
-* EN: To vote for Karinbot, press hearts at [here](https://koreanbots.dev/bots/685715386745880581)!
+* KR: 카린봇을 투표하시려면 [여기](https://koreanbots.dev/bots/742177331614842962)에서 Heart를 눌러주세요!
+* EN: To vote for Karinbot, press hearts at [here](https://koreanbots.dev/bots/742177331614842962)!
   * How to press hearts: [click!](https://cdn.discordapp.com/attachments/705679542324428828/708982321746804746/unknown.png)
