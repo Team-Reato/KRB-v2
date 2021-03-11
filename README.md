@@ -1,7 +1,13 @@
 # KRB-v2
 
+**현재 카린봇은 서비스가 종료되었습니다. 이점 참고하시어 레포지토리 확인해주시기 바랍니다.**
+**추후 서비스 계획에 대해서는 고민중에 있습니다.**
+
 * KR: 해당 레포지토리에선 KRB-v2 서비스 및 모든 프로젝트에 대해 선언하며, 카린봇의 일부 소스를 제외한 모든 소스를 공개합니다.
 * EN: The current repository declares the KRB-v2 service and all projects, and discloses all sources except some of the KRB's sources.
+
+# Developer Blog
+* https://ihah.tisotry.com
 
 # License
 
@@ -20,6 +26,8 @@
 *  끝말잇기 시스템 제작
 
 # Vote
+
+* 서비스 종료되었습니다. Vote를 하더라도 보상을 받을 수 없습니다.
 
 * KR: 카린봇을 투표하시려면 [여기](https://koreanbots.dev/bots/742177331614842962)에서 Heart를 눌러주세요!
 * EN: To vote for Karinbot, press hearts at [here](https://koreanbots.dev/bots/742177331614842962)!
