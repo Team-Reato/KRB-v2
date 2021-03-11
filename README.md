@@ -7,7 +7,7 @@
 * EN: The current repository declares the KRB-v2 service and all projects, and discloses all sources except some of the KRB's sources.
 
 # Developer Blog
-* https://ihah.tisotry.com
+* https://ihah.tistory.com
 
 # License
 
